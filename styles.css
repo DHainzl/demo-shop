@@ -1,0 +1,7 @@
+.shop-item {
+	cursor: pointer;
+}
+
+.shop-item .name {
+	font-weight: bold;
+}

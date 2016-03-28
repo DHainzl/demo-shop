@@ -1,0 +1,21 @@
+<div>
+	<div *ngIf="loading">Loading ...</div>
+	<div *ngIf="!loading">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2><a [routerLink]="['List']" class="fa fa-arrow-left"></a> {{item.name}}</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<img [src]="item.images[0]" class="img-responsive" />
+			</div>
+			<div class="col-md-6">
+				<p [innerHTML]="item.description"></p>
+				<button class="btn btn-primary" (click)="addToCart()">
+					<span class="fa fa-cart-plus"></span> {{item.price}}&euro;
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

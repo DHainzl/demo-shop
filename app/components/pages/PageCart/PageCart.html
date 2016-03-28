@@ -1,0 +1,37 @@
+<div>
+	<div *ngIf="loading">Loading ...</div>
+	<div *ngIf="!loading && cartService.numItems() == 0">No items in the cart.</div>
+	<div *ngIf="!loading && cartService.numItems() > 0">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2><a [routerLink]="['List']" class="fa fa-arrow-left"></a> Your cart</h2>
+			</div>
+		</div>
+		<div class="row" *ngFor="#item of cartService.list()">
+			<div class="col-xs-3 col-md-1">
+				<img [src]="descriptions[item.id].images[0]" class="img-responsive" />
+			</div>
+			<div class="col-xs-8 col-md-3"><strong>{{descriptions[item.id].name}}</strong></div>
+			<div class="col-xs-1 visible-xs visible-sm"><a class="fa fa-times" (click)="cartService.remove(item.id)"></a></div>
+			<div class="clearfix visible-xs-block visible-sm-block"></div>
+			<div class="col-xs-4 col-md-3"><input type="number" class="form-control" [(ngModel)]="item.amount"></div>
+			<div class="col-xs-4 col-md-2">{{descriptions[item.id].price}} &euro;</div>
+			<div class="col-xs-4 col-md-2">{{descriptions[item.id].price * item.amount}} &euro;</div>
+			<div class="col-md-1 visible-md visible-lg"><a class="fa fa-times" (click)="cartService.remove(item.id)"></a></div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="col-xs-8 col-md-9 text-right">Gross Price</div>
+			<div class="col-xs-4 col-md-2">{{cartService.total() / 1.2}} &euro;</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-md-9 text-right">Taxes</div>
+			<div class="col-xs-4 col-md-2">{{cartService.total() / 1.2 * 0.2}} &euro;</div>
+		</div>
+		<hr />
+		<div class="row">
+			<div class="col-xs-8 col-md-9 text-right">Price Total</div>
+			<div class="col-xs-4 col-md-2">{{cartService.total()}} &euro;</div>
+		</div>
+	</div>
+</div>
